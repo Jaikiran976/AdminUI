@@ -1,0 +1,86 @@
+.searchbar{
+  width: 99%;
+  padding: 5px;
+  border-color: rgba(201, 76, 76, 0.3);
+  opacity: .7;
+}
+
+
+
+.main{
+  border-collapse: collapse;
+  width: 100%;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 20%  20% 20% 20% 20%;
+  height: 40px;
+  padding: 10px;
+}
+.grid-container > div {
+  text-align: left;
+  padding: 20px;
+  border-bottom: 1px solid rgba(77, 35, 35, 0.3);
+}
+.selected > div{
+  background-color: lightgray;
+  border-top: 1px solid rgba(77, 35, 35, 0.3);
+  border-bottom: 1px solid rgba(77, 35, 35, 0.3);
+}
+.headers{
+  font-weight:bolder;
+}
+.nodata{
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(77, 35, 35, 0.3);
+}
+
+
+
+.footer{
+  display: grid;
+  grid-template-columns: 10% 80%;
+  height: 40px;
+  padding: 10px;
+  border-collapse: collapse;
+  width: 100%;
+}
+.footer .deleteall {
+  text-align: left;
+  padding: 16px;
+}
+.footer .deleteall >button{
+  background-color:rgb(153, 92, 92);
+  border: 0;
+  border-radius: 30px;
+  height: 40px;
+  padding: 1em 1em;
+  color: white;
+}
+.footer .deleteall >button:hover {
+  background-color: #000000
+}
+.footer .pagination{
+  text-align: center;
+  padding: 16px;
+} 
+.footer .pagination >button{
+  margin-right: 8px;
+  background-color: #2e70db;
+  color: #eee;
+  border:2px solid #2e70db;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.footer .pagination :disabled{
+  background-color: rgba(239, 239, 239, 0.3);
+  color: rgb(226, 209, 209);
+  border-color: rgba(118, 118, 118, 0.3);
+}
+.footer .pagination .pageactive{
+  background-color: white;
+  color: black;
+  border:2px solid #2e70db;
+}

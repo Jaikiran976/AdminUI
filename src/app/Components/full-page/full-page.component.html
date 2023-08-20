@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+
+        <header>
+
+            <input #input type="text" id="search" class="searchbar" placeholder="Search by name,email or role" (input)="search(input.value)" [value]="inputvalue">
+
+        </header>
+
+        <main class="main">
+
+            <section class="grid-container">
+
+                <div class="headers"><input type="checkbox" (click)="selectuser('all')" [checked]="isChecked"></div>
+                <div class="headers">Name</div>
+                <div class="headers">E-mail</div>
+                <div class="headers">Role</div>
+                <div class="headers">Actions</div>
+
+            </section>
+
+            <ng-template [ngIf]="searchList.length!=0" [ngIfElse]="noData">
+                <section *ngFor="let user of showusers" class="grid-container" [ngClass]="selectedUserIds.includes(user.id)?'selected':''" >
+                    <ng-template [ngIf]="!(editUser.id==user.id)" [ngIfElse]="editing">
+                        <div>
+                            <input type="checkbox" (click)="selectuser(user.id)" [checked]="selectedUserIds.includes(user.id)">
+                        </div>
+                        <div>
+                        {{user.name}}
+                        </div>
+                        <div>
+                        {{user.email}}
+                        </div>
+                        <div>
+                            {{user.role}}
+                        </div>
+                        <div class="actions">
+                            <i class="fa fa-edit" (click)="edit(user)"></i>&nbsp;&nbsp;&nbsp;
+                            <i class="fa fa-trash" (click)="delete(user)"></i>
+                        </div>
+                    </ng-template>
+                    
+                    <ng-template #editing>
+                        <div>
+                            <input type="checkbox">
+                        </div>
+                        <div>
+                            <input #name type="text" class="name" id={{user.name}} value={{user.name}}>
+                        </div>
+                        <div>
+                            <input #email type="text" class="email" id={{user.email}}  value={{user.email}}> 
+                        </div>
+                        <div>
+                            <input #role type="text" class="role"  id={{user.id}} value={{user.role}}>
+                        </div>
+                        <div class="actions">
+                            <i class="fa fa-check" (click)="save(name.value,email.value,role.value)"></i>&nbsp;&nbsp;&nbsp;
+                            <i class="fa fa-times" (click)="cancel(user)"></i>
+                        </div>
+                    </ng-template>
+                </section>
+            </ng-template>
+            <ng-template #noData>
+                <section class="nodata">
+                    No data for the search term.
+                </section>
+            </ng-template>
+
+        </main>
+
+        <footer class="footer">
+
+            <div class="deleteall">
+                <button class="selectdeletebutton" (click)="deleteSelectedUsers()">Delete Selected</button>
+            </div>
+
+            <div class="pagination">
+
+                <button (click)="incOrDecpageNumber('min')" [disabled]="currentPageNumber==1||pages.length==0">&lt;&lt;</button>
+                <button (click)="incOrDecpageNumber('dec')" [disabled]="currentPageNumber==1||pages.length==0">&lt;</button>
+                <button *ngFor="let page of pages" (click)="changePageNumber(page)" [ngClass]="currentPageNumber==page?'pageactive':''">{{page}}</button>
+                <button (click)="incOrDecpageNumber('inc')" [disabled]="currentPageNumber==pages.length||pages.length==0">&gt;</button>
+                <button (click)="incOrDecpageNumber('max')" [disabled]="currentPageNumber==pages.length||pages.length==0">&gt;&gt;</button>
+                
+            </div>
+
+        </footer>
+
+    </body>
+</html>

@@ -4,7 +4,7 @@ import { FullPageComponent } from './Components/full-page/full-page.component';
 
 const routes: Routes = [
   {
-    path:'',
+    path:'/adminui',
     component:FullPageComponent
 },
 ];
